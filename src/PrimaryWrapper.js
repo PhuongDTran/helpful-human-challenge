@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AppBar, InputBase, Paper, Button, Grid } from '@material-ui/core';
 import { sliceColors, getSize } from './logic/controller';
-import { Link, Route, Redirect, useLocation } from "react-router-dom";
+import { HashRouter, Link, Route, Redirect, useLocation } from "react-router-dom";
 
 
 import FormRow from './components/FormRow';
@@ -9,11 +9,22 @@ import FormRow from './components/FormRow';
 // css
 import './App.css';
 
+
+
+export default function PrimaryWrapper() {
+  return (
+    <HashRouter basename='/'>
+        <App />
+    </HashRouter>
+  )
+}
+
+
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-export default function App() {
+function App() {
   const colorsPerRow = 4;
   const numColorsPerPage = 12;
   const [currentPage, setCurrentPage] = useState(Number(1));
